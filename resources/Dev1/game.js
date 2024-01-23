@@ -88,6 +88,7 @@ var update = function() {
 			PS.debug(dot)
 			PS.color(dot.x,dot.y++,PS.COLOR_WHITE)
 			if (dot.y == 15) {
+				if (Math.abs(dot.x-globals.playerX)<=1) globals.score++
 				dot.y = 0
 				dot.x = PS.random(16)-1
 			}
@@ -96,6 +97,7 @@ var update = function() {
 		globals.dotDelay=globals.MAXDOTDELAY
 		//return PS.ERROR
 	}
+	PS.statusText("score: "+globals.score)
 }
 
 var globals = {
