@@ -72,7 +72,7 @@ PS.init = function( system, options ) {
 	// Uncomment the following code line and
 	// change the string parameter as needed.
 
-	// PS.statusText( "Game" );
+	PS.statusText( "Catch!" );
 
 	// Add any other initialization code you need here.
 	PS.timerStart(2, update);
@@ -97,7 +97,7 @@ var update = function() {
 		globals.dotDelay=globals.MAXDOTDELAY
 		//return PS.ERROR
 	}
-	PS.statusText("score: "+globals.score)
+	PS.message("score: "+globals.score)
 }
 
 var globals = {
