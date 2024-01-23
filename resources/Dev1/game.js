@@ -182,6 +182,11 @@ PS.keyDown = function( key, shift, ctrl, options ) {
 	// PS.debug( "PS.keyDown(): key=" + key + ", shift=" + shift + ", ctrl=" + ctrl + "\n" );
 
 	// Add code here for when a key is pressed.
+	if (key==PS.KEY_ARROW_RIGHT) {
+
+	} else if (key==PS.KEY_ARROW_LEFT) {
+
+	}
 };
 
 /*
