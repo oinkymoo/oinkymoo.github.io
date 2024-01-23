@@ -85,7 +85,7 @@ var update = function() {
 	PS.color(globals.playerX+1,15,PS.COLOR_GREEN)
 	if (--globals.dotDelay==0) {
 		for (var dot of globals.dots) {
-			PS.debug(dot)
+			//PS.debug(dot)
 			PS.color(dot.x,dot.y++,PS.COLOR_WHITE)
 			if (dot.y == 15) {
 				if (Math.abs(dot.x-globals.playerX)<=1) globals.score++
