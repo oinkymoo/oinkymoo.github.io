@@ -64,7 +64,7 @@ PS.init = function( system, options ) {
 	// Uncomment the following code line and change
 	// the x and y parameters as needed.
 
-	PS.gridSize( 8, 12 );
+	PS.gridSize( 16, 16 );
 
 	// This is also a good place to display
 	// your game title or a welcome message
@@ -75,7 +75,20 @@ PS.init = function( system, options ) {
 	// PS.statusText( "Game" );
 
 	// Add any other initialization code you need here.
+	PS.timerStart(2, update);
 };
+
+var update = function() {
+	PS.color(PS.ALL,15,PS.COLOR_BLUE)
+	PS.color(globals.playerX,15,PS.COLOR_GREEN)
+	PS.color(globals.playerX-1,15,PS.COLOR_GREEN)
+	PS.color(globals.playerX+1,15,PS.COLOR_GREEN)
+}
+
+var globals = {
+	playerX: 8,
+	dots: [{x: PS.random(16), y:0}, {x: PS.random(16), y:5}, {x: PS.random(16), y:10}]
+}
 
 /*
 PS.touch ( x, y, data, options )
@@ -183,9 +196,9 @@ PS.keyDown = function( key, shift, ctrl, options ) {
 
 	// Add code here for when a key is pressed.
 	if (key==PS.KEY_ARROW_RIGHT) {
-
+		if (globals.playerX<14) globals.playerX++;
 	} else if (key==PS.KEY_ARROW_LEFT) {
-
+		if (globals.playerX>1) globals.playerX--;
 	}
 };
 
