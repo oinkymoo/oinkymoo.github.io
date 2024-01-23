@@ -84,7 +84,7 @@ var update = function() {
 	PS.color(globals.playerX-1,15,PS.COLOR_GREEN)
 	PS.color(globals.playerX+1,15,PS.COLOR_GREEN)
 	if (--globals.dotDelay==0) {
-		for (var dot in globals.dots) {
+		for (var dot of globals.dots) {
 			PS.debug(dot)
 			PS.color(dot.x,dot.y++,PS.COLOR_WHITE)
 			if (dot.y == 15) {
@@ -94,6 +94,7 @@ var update = function() {
 			PS.color(dot.x,dot.y,PS.COLOR_YELLOW)
 		}
 		globals.dotDelay=globals.MAXDOTDELAY
+		//return PS.ERROR
 	}
 }
 
