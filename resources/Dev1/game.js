@@ -85,7 +85,8 @@ var update = function() {
 	PS.color(globals.playerX+1,15,PS.COLOR_GREEN)
 	if (--globals.dotDelay==0) {
 		for (var dot in globals.dots) {
-			PS.color(dot.x,dot.y++,PS.COLOR_WHITE)
+			PS.color(dot.x,dot.y,PS.COLOR_WHITE)
+			dot.y++
 			if (dot.y == 15) {
 				dot.y = 0
 				dot.x = PS.random(16)-1
