@@ -83,11 +83,25 @@ var update = function() {
 	PS.color(globals.playerX,15,PS.COLOR_GREEN)
 	PS.color(globals.playerX-1,15,PS.COLOR_GREEN)
 	PS.color(globals.playerX+1,15,PS.COLOR_GREEN)
+	if (--globals.dotDelay==0) {
+		for (var dot in globals.dots) {
+			PS.color(dot.x,dot.y++,PS.COLOR_WHITE)
+			if (dot.y == 15) {
+				dot.y = 0
+				dot.x = PS.random(16)-1
+			}
+			PS.color(dot.x,dot.y,PS.COLOR_YELLOW)
+		}
+		globals.dotDelay=globals.MAXDOTDELAY
+	}
 }
 
 var globals = {
 	playerX: 8,
-	dots: [{x: PS.random(16), y:0}, {x: PS.random(16), y:5}, {x: PS.random(16), y:10}]
+	dots: [{x: PS.random(16)-1, y:0}, {x: PS.random(16)-1, y:5}, {x: PS.random(16)-1, y:10}],
+	dotDelay: 3,
+	MAXDOTDELAY:3,
+	score: 0,
 }
 
 /*
