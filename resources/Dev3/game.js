@@ -80,7 +80,7 @@ PS.init = function( system, options ) {
 };
 
 var update = function() {
-	PS.color(PS.ALL,15,PS.COLOR_RED)
+	PS.color(PS.ALL,15,0x800000)
 	PS.color(globals.playerX,15,PS.COLOR_GREEN)
 	PS.color(globals.playerX-1,15,PS.COLOR_GREEN)
 	PS.color(globals.playerX+1,15,PS.COLOR_GREEN)
