@@ -77,8 +77,8 @@ PS.init = function( system, options ) {
 	// Add any other initialization code you need here.
 	var cols = [PS.COLOR_BLACK,PS.COLOR_WHITE,PS.COLOR_YELLOW,PS.COLOR_BLUE,PS.COLOR_GREEN]
 	var map = [[0,0,0,0,0],[0,1,3,1,0],[0,2,2,2,0],[0,1,1,1,0],[0,0,4,0,0],[0,0,0,0,0]]
-	for (var row in map) {
-		for (var col in map[row]) {
+	for (var row=0; row<6; row++) {
+		for (var col=0; col<5; col++) {
 			PS.color(col,row,cols[map[row][col]])
 		}
 	}
