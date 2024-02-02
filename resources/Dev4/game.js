@@ -79,7 +79,7 @@ PS.init = function( system, options ) {
 	var map = [[0,0,0,0,0],[0,1,3,1,0],[0,2,2,2,0],[0,1,1,1,0],[0,0,4,0,0],[0,0,0,0,0]]
 	for (var row in map) {
 		for (var col in map[row]) {
-			PS.color(col,row,map[row][col])
+			PS.color(col,row,cols[map[row][col]])
 		}
 	}
 };
