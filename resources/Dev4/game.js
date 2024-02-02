@@ -82,6 +82,7 @@ PS.init = function( system, options ) {
 			PS.color(col,row,cols[map[row][col]])
 		}
 	}
+	PS.audioLoad("fx_tada")
 };
 
 var globals = {
@@ -227,6 +228,10 @@ function move(dx, dy) {
 		PS.color(globals.playerX,globals.playerY,PS.COLOR_WHITE);
 		globals.playerX+=dx;
 		globals.playerY+=dy;
+		if (PS.color(globals.playerX,globals.playerY)==PS.COLOR_GREEN) {
+			PS.statusText("You Win!")
+			PS.audioPlay("fx_tada")
+		}
 		PS.color(globals.playerX,globals.playerY,PS.COLOR_BLUE);
 	}
 }
