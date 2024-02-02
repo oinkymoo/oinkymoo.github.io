@@ -64,8 +64,7 @@ PS.init = function( system, options ) {
 	// Uncomment the following code line and change
 	// the x and y parameters as needed.
 
-	PS.gridSize( 16, 16 );
-	PS.color(PS.ALL, PS.ALL, PS.COLOR_BLACK)
+	PS.gridSize( 5, 6 );
 
 	// This is also a good place to display
 	// your game title or a welcome message
@@ -73,43 +72,21 @@ PS.init = function( system, options ) {
 	// Uncomment the following code line and
 	// change the string parameter as needed.
 
-	PS.statusText( "Catch!" );
+	PS.statusText( "arrows or WASD to move" );
 
 	// Add any other initialization code you need here.
-	PS.timerStart(2, update);
+	var cols = [PS.COLOR_BLACK,PS.COLOR_WHITE,PS.COLOR_YELLOW,PS.COLOR_BLUE,PS.COLOR_GREEN]
+	var map = [[0,0,0,0,0],[0,1,3,1,0],[0,2,2,2,0],[0,1,1,1,0],[0,0,4,0,0],[0,0,0,0,0]]
+	for (var row in map) {
+		for (var col in map[row]) {
+			PS.color(col,row,map[row][col])
+		}
+	}
 };
 
-var update = function() {
-	PS.color(PS.ALL,15,0x800000)
-	PS.color(globals.playerX,15,PS.COLOR_GREEN)
-	PS.color(globals.playerX-1,15,PS.COLOR_GREEN)
-	PS.color(globals.playerX+1,15,PS.COLOR_GREEN)
-	PS.color(globals.playerX+2,15,PS.COLOR_GREEN)
-	if (--globals.dotDelay==0) {
-		for (var dot of globals.dots) {
-			//PS.debug(dot)
-			PS.color(dot.x,dot.y++,PS.COLOR_BLACK)
-			if (dot.y == 15) {
-				if (Math.abs(dot.x-globals.playerX)<=1) {
-					globals.score++
-					PS.statusText("score: "+globals.score)
-				}
-				dot.y = 0
-				dot.x = PS.random(16)-1
-			}
-			PS.color(dot.x,dot.y,PS.COLOR_YELLOW)
-		}
-		globals.dotDelay=globals.MAXDOTDELAY
-		//return PS.ERROR
-	}
-}
-
 var globals = {
-	playerX: 8,
-	dots: [{x: PS.random(16)-1, y:0}, {x: PS.random(16)-1, y:5}, {x: PS.random(16)-1, y:10}],
-	dotDelay: 3,
-	MAXDOTDELAY:3,
-	score: 0,
+	playerX: 2,
+	playerY: 1
 }
 
 /*
@@ -217,12 +194,61 @@ PS.keyDown = function( key, shift, ctrl, options ) {
 	// PS.debug( "PS.keyDown(): key=" + key + ", shift=" + shift + ", ctrl=" + ctrl + "\n" );
 
 	// Add code here for when a key is pressed.
-	if (key==PS.KEY_ARROW_RIGHT) {
-		if (globals.playerX<13) globals.playerX++;
-	} else if (key==PS.KEY_ARROW_LEFT) {
-		if (globals.playerX>1) globals.playerX--;
+	switch ( key ) {
+		case PS.KEY_ARROW_UP:
+		case 119:
+		case 87: {
+			move(0,-1)
+			break;
+		}
+		case PS.KEY_ARROW_DOWN:
+		case 115:
+		case 83: {
+			move(0,1)
+			break;
+		}
+		case PS.KEY_ARROW_LEFT:
+		case 97:
+		case 65: {
+			move(-1,0)
+			break;
+		}
+		case PS.KEY_ARROW_RIGHT:
+		case 100:
+		case 68: {
+			move(1,0)
+			break;
+		}
 	}
 };
+
+function move(dx, dy) {
+	if(push(globals.playerX+dx,globals.playerY+dy,dx,dy)) {
+		PS.color(globals.playerX,globals.playerY,PS.COLOR_WHITE);
+		globals.playerX+=dx;
+		globals.playerY+=dy;
+		PS.color(globals.playerX,globals.playerY,PS.COLOR_BLUE);
+	}
+}
+
+function push(px, py, dx, dy) {
+	switch (PS.color(px,py)) {
+		case PS.COLOR_BLACK: {
+			return false
+		}
+		case PS.COLOR_WHITE:
+		case PS.COLOR_GREEN: {
+			return true
+		}
+		case PS.COLOR_YELLOW: {
+			if (push(px+dx,py+dy,dx,dy)) {
+				PS.color(px+dx,py+dy,PS.COLOR_YELLOW)
+				return true
+			}
+			return false
+		}
+	}
+}
 
 /*
 PS.keyUp ( key, shift, ctrl, options )
