@@ -64,8 +64,6 @@ PS.init = function( system, options ) {
 	// Uncomment the following code line and change
 	// the x and y parameters as needed.
 
-	PS.gridSize( 5, 6 );
-
 	// This is also a good place to display
 	// your game title or a welcome message
 	// in the status line above the grid.
@@ -75,19 +73,36 @@ PS.init = function( system, options ) {
 	PS.statusText( "arrows or WASD to move" );
 
 	// Add any other initialization code you need here.
-	var cols = [PS.COLOR_BLACK,PS.COLOR_WHITE,PS.COLOR_YELLOW,PS.COLOR_BLUE,PS.COLOR_GREEN]
-	var map = [[0,0,0,0,0],[0,1,3,1,0],[0,2,2,2,0],[0,1,1,1,0],[0,0,4,0,0],[0,0,0,0,0]]
-	for (var row=0; row<6; row++) {
-		for (var col=0; col<5; col++) {
-			PS.color(col,row,cols[map[row][col]])
-		}
-	}
+	loadMap()
 	PS.audioLoad("fx_tada")
 };
 
 var globals = {
-	playerX: 2,
-	playerY: 1
+	playerX: 0,
+	playerY: 0,
+	mapNum: 0,
+	levels: [
+		{width: 5,
+		height: 6,
+		map: [[0,0,0,0,0],[0,1,3,1,0],[0,2,2,2,0],[0,1,1,1,0],[0,0,4,0,0],[0,0,0,0,0]],
+		pX: 2,
+		py: 1}
+	]
+}
+
+function loadMap() {
+	var cols = [PS.COLOR_BLACK,PS.COLOR_WHITE,PS.COLOR_YELLOW,PS.COLOR_BLUE,PS.COLOR_GREEN]
+
+	var lvl = levels[mapNum]
+	PS.gridSize(lvl.width,lvl.height)
+	var map = lvl.map
+	for (var row=0; row<lvl.height; row++) {
+		for (var col=0; col<lvl.width; col++) {
+			PS.color(col,row,cols[map[row][col]])
+		}
+	}
+	globals.playerX = lvl.pX
+	globals.playerY = lvl.pY
 }
 
 /*
