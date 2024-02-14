@@ -255,6 +255,11 @@ PS.keyDown = function( key, shift, ctrl, options ) {
 			move(1,0)
 			break;
 		}
+		case 114:
+		case 82: {
+			loadMap()
+			break;
+		}
 	}
 };
 
@@ -264,8 +269,9 @@ function move(dx, dy) {
 		globals.playerX+=dx;
 		globals.playerY+=dy;
 		if (PS.color(globals.playerX,globals.playerY)==PS.COLOR_GREEN) {
-			PS.statusText("You Win!")
 			PS.audioPlay("fx_tada")
+			globals.mapNum++
+			loadMap()
 		}
 		PS.color(globals.playerX,globals.playerY,PS.COLOR_BLUE);
 	}
