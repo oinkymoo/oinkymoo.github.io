@@ -268,11 +268,12 @@ function move(dx, dy) {
 		PS.color(globals.playerX,globals.playerY,PS.COLOR_WHITE);
 		globals.playerX+=dx;
 		globals.playerY+=dy;
-		PS.color(globals.playerX,globals.playerY,PS.COLOR_BLUE);
 		if (PS.color(globals.playerX,globals.playerY)==PS.COLOR_GREEN) {
 			PS.audioPlay("fx_tada")
 			globals.mapNum++
 			loadMap()
+		} else {
+			PS.color(globals.playerX, globals.playerY, PS.COLOR_BLUE);
 		}
 	}
 }
