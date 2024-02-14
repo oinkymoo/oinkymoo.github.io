@@ -91,6 +91,7 @@ var globals = {
 			  [0,0,0,0,0]],
 		pX: 2,
 		pY: 1},
+		{width: 5,
 		{width: 10,
 		height: 15,
 		map: [[0,0,0,0,0,0,0,0,0,0],
