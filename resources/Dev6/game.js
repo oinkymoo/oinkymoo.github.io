@@ -70,7 +70,7 @@ PS.init = function( system, options ) {
 	// Uncomment the following code line and
 	// change the string parameter as needed.
 
-	PS.statusText( "arrows or WASD to move" );
+	//PS.statusText( "arrows or WASD to move" );
 
 	// Add any other initialization code you need here.
 	loadMap()
@@ -91,7 +91,8 @@ var globals = {
 			  [0,0,4,0,0],
 			  [0,0,0,0,0]],
 		pX: 2,
-		pY: 1},
+		pY: 1,
+		txt: "arrows or wasd to move"},
 		{width: 9,
 		height: 8,
 		map: [[0,0,0,0,0,0,0,0,0],
@@ -103,7 +104,8 @@ var globals = {
 			  [0,1,1,1,1,1,1,1,0],
 			  [0,0,0,0,0,0,0,0,0]],
 		pX: 1,
-		pY: 1},
+		pY: 1,
+		txt: "the goal is fragile"},
 		{width: 10,
 		height: 15,
 		map: [[0,0,0,0,0,0,0,0,0,0],
@@ -122,7 +124,8 @@ var globals = {
 			  [0,0,0,1,0,0,0,0,0,0],
 			  [0,0,0,0,0,0,0,0,0,0]],
 		pX: 1,
-		pY: 9},
+		pY: 9,
+		txt: "i dont have anything to add. big puzzle"},
 		{width:13,
 		height:11,
 		map: [[0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -137,7 +140,8 @@ var globals = {
 			  [0,0,1,0,1,0,0,1,0,1,0,1,0],
 			  [0,0,0,0,0,0,0,0,0,0,0,0,0]],
 		pX: 4,
-		pY: 5}
+		pY: 5,
+		txt: "its true. you win"}
 	]
 }
 
@@ -154,6 +158,7 @@ function loadMap() {
 	}
 	globals.playerX = lvl.pX
 	globals.playerY = lvl.pY
+	PS.statusText(lvl.txt);
 }
 
 /*
