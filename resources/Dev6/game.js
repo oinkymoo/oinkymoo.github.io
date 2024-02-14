@@ -113,7 +113,7 @@ var globals = {
 function loadMap() {
 	var cols = [PS.COLOR_BLACK,PS.COLOR_WHITE,PS.COLOR_YELLOW,PS.COLOR_BLUE,PS.COLOR_GREEN]
 
-	var lvl = levels[mapNum]
+	var lvl = globals.levels[mapNum]
 	PS.gridSize(lvl.width,lvl.height)
 	var map = lvl.map
 	for (var row=0; row<lvl.height; row++) {
