@@ -72,6 +72,7 @@ PS.init = function( system, options ) {
 	// Uncomment the following code line and
 	// change the string parameter as needed.
 
+	PS.statusText( "scroll to extend/retract line" );
 
 	// Add any other initialization code you need here.
 	PS.color(PS.ALL, PS.ALL, 0xaaaaff)
