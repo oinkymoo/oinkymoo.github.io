@@ -83,6 +83,7 @@ PS.init = function( system, options ) {
 	PS.color(1,1,0x804000)
 
 	PS.glyph(0,14,0x1F420)
+	PS.glyph(0,0,0x1FA9D)
 
 	PS.timerStart(1, update);
 };
@@ -103,6 +104,8 @@ var globals = {
 	fishDx: 1,
 	fishY: 14,
 	fishTimer: 3,
+	hookX: 0,
+	hookY: 0,
 }
 
 /*
