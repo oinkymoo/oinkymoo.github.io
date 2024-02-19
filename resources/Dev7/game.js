@@ -82,11 +82,20 @@ PS.init = function( system, options ) {
 	PS.color(0,1,0x804000)
 	PS.color(1,1,0x804000)
 
+	PS.glyph(0,14,0x1F420)
+
 	PS.timerStart(1, update);
 };
 
 var update = function() {
-
+	if (globals.fishTimer--==0) {
+		globals.fishTimer = 3
+		PS.glyph(globals.fishX, globals.fishY, 0)
+		globals.fishX+=globals.fishDx
+		PS.glyph(globals.fishX, globals.fishY, 0x1F420)
+		if (globals.fishX==15) globals.fishDx=-1
+		if (globals.fishX==0) globals.fishDx=1
+	}
 }
 
 var globals = {
