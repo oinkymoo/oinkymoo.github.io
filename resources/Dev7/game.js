@@ -232,11 +232,11 @@ NOTE: Currently, only mouse wheel events are reported, and only when the mouse c
 PS.input = function( sensors, options ) {
 	// Uncomment the following code lines to inspect first parameter:
 
-//	 var device = sensors.wheel; // check for scroll wheel
-//
-//	 if ( device ) {
-//	   PS.debug( "PS.input(): " + device + "\n" );
-//	 }
+	var device = sensors.wheel; // check for scroll wheel
+
+	switch (device) {
+
+	}
 
 	// Add code here for when an input event is detected.
 };
