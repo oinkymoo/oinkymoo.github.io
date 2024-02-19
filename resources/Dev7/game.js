@@ -89,6 +89,10 @@ var update = function() {
 }
 
 var globals = {
+	fishX: 0,
+	fishDx: 1,
+	fishY: 14,
+	fishTimer: 3,
 }
 
 /*
