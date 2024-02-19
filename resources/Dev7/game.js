@@ -80,9 +80,12 @@ PS.init = function( system, options ) {
 	PS.color(PS.ALL, 1, PS.COLOR_WHITE)
 	PS.color(0,1,0x804000)
 	PS.color(1,1,0x804000)
+
+	PS.timerStart(1, update);
 };
 
 var update = function() {
+
 }
 
 var globals = {
