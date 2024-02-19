@@ -72,42 +72,14 @@ PS.init = function( system, options ) {
 	// Uncomment the following code line and
 	// change the string parameter as needed.
 
-	PS.statusText( "Catch!" );
 
 	// Add any other initialization code you need here.
-	PS.timerStart(2, update);
 };
 
 var update = function() {
-	PS.color(PS.ALL,15,PS.COLOR_BLUE)
-	PS.color(globals.playerX,15,PS.COLOR_GREEN)
-	PS.color(globals.playerX-1,15,PS.COLOR_GREEN)
-	PS.color(globals.playerX+1,15,PS.COLOR_GREEN)
-	if (--globals.dotDelay==0) {
-		for (var dot of globals.dots) {
-			//PS.debug(dot)
-			PS.color(dot.x,dot.y++,PS.COLOR_WHITE)
-			if (dot.y == 15) {
-				if (Math.abs(dot.x-globals.playerX)<=1) {
-					globals.score++
-					PS.statusText("score: "+globals.score)
-				}
-				dot.y = 0
-				dot.x = PS.random(16)-1
-			}
-			PS.color(dot.x,dot.y,PS.COLOR_YELLOW)
-		}
-		globals.dotDelay=globals.MAXDOTDELAY
-		//return PS.ERROR
-	}
 }
 
 var globals = {
-	playerX: 8,
-	dots: [{x: PS.random(16)-1, y:0}, {x: PS.random(16)-1, y:5}, {x: PS.random(16)-1, y:10}],
-	dotDelay: 3,
-	MAXDOTDELAY:3,
-	score: 0,
 }
 
 /*
@@ -215,11 +187,6 @@ PS.keyDown = function( key, shift, ctrl, options ) {
 	// PS.debug( "PS.keyDown(): key=" + key + ", shift=" + shift + ", ctrl=" + ctrl + "\n" );
 
 	// Add code here for when a key is pressed.
-	if (key==PS.KEY_ARROW_RIGHT) {
-		if (globals.playerX<14) globals.playerX++;
-	} else if (key==PS.KEY_ARROW_LEFT) {
-		if (globals.playerX>1) globals.playerX--;
-	}
 };
 
 /*
