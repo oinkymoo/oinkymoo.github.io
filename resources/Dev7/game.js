@@ -74,6 +74,12 @@ PS.init = function( system, options ) {
 
 
 	// Add any other initialization code you need here.
+	PS.color(PS.ALL, PS.ALL, 0xaaaaff)
+	PS.color(PS.ALL, 15, 0xffffaa)
+	PS.color(PS.ALL, 0, PS.COLOR_WHITE)
+	PS.color(PS.ALL, 1, PS.COLOR_WHITE)
+	PS.color(0,1,0x804000)
+	PS.color(1,1,0x804000)
 };
 
 var update = function() {
