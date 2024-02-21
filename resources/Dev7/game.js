@@ -72,7 +72,7 @@ PS.init = function( system, options ) {
 	// Uncomment the following code line and
 	// change the string parameter as needed.
 
-	PS.statusText( "scroll down/up to extend/retract line" );
+	PS.statusText( "scroll to cast line" );
 
 	// Add any other initialization code you need here.
 	PS.color(PS.ALL, PS.ALL, 0xaaaaff)
@@ -115,6 +115,7 @@ var update = function() {
 			globals.hookY = 2
 			PS.glyph(globals.hookX, 2, (globals.fishX==globals.hookX && globals.fishY==2) ? 0x1F420 : 0x1FA9D)
 			globals.scrollTime = 0
+			PS.statusText("scroll down/up to lower/raise hook")
 		}
 
 	}
