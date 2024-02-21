@@ -98,8 +98,8 @@ var update = function() {
 		if (globals.fishX==0) globals.fishDx=1
 	}
 	if (globals.scrollDel>0) {
+		globals.scrollTime++
 		if (globals.hookY==0) {
-			globals.scrollTime++
 			if (globals.scrollDel==3) {
 				PS.glyph(globals.hookX, 0, 0)
 				globals.hookX = Math.min((globals.scrollTime+3)/2, 15)
@@ -107,17 +107,33 @@ var update = function() {
 			}
 			globals.scrollDel--
 		} else {
-
+			if (globals.scrollDel==3) {
+				PS.glyph(globals.hookX, globals.hookY, (globals.scrollDir==1 && globals.hookX==globals.fishX && globals.hookY==globals.fishY) ? 0x1F420 : 0)
+				globals.hookY = Math.min(Math.max(globals.origHookY + (globals.scrollTime*globals.scrollDir)/2, 1), 14)
+				PS.glyph(globals.hookX, globals.hookY, (globals.hookX==globals.fishX && globals.hookY==globals.fishY) ? 0x1F420 : 0x1FA9D)
+			}
 		}
 	} else {
 		if (globals.hookY==0 && globals.scrollTime) {
 			PS.glyph(globals.hookX, 0, 0)
 			globals.hookY = 2
 			PS.glyph(globals.hookX, 2, (globals.fishX==globals.hookX && globals.fishY==2) ? 0x1F420 : 0x1FA9D)
-			globals.scrollTime = 0
 			PS.statusText("scroll down/up to lower/raise hook")
+		} else if (globals.hookY==1) {
+			PS.glyph(globals.hookX, 1, 0)
+			PS.glyph(0,0,0x1FA9D)
+			globals.hookX=0
+			globals.hookY=0
+			PS.statusText( "scroll to cast line" );
+			if (globals.fishY==1) {
+				PS.glyph(globals.fishX,1,0)
+				PS.glyph(0,0,0x1F3A3)
+				PS.statusText("You Win!")
+				PS.timerStop(globals.gameLoop)
+			}
 		}
-
+		globals.origHookY = globals.hookY
+		globals.scrollTime = 0
 	}
 }
 
@@ -128,6 +144,7 @@ var globals = {
 	fishTimer: 3,
 	hookX: 0,
 	hookY: 0,
+	origHookY: 0,
 	scrollDir: 1,
 	scrollDel: 0,
 	scrollTime: 0,
@@ -276,11 +293,19 @@ PS.input = function( device, options ) {
 	if (wheel) {
 		if (wheel === PS.WHEEL_FORWARD) {
 			globals.scrollDel=3
-			globals.scrollDir=1
+			if (globals.scrollDir==1) {
+				globals.origHookY=globals.hookY
+				globals.scrollTime=0
+			}
+			globals.scrollDir=-1
 		}
 		if (wheel === PS.WHEEL_BACKWARD) {
 			globals.scrollDel=3
-			globals.scrollDir=-1
+			if (globals.scrollDir==-1) {
+				globals.origHookY=globals.hookY
+				globals.scrollTime=0
+			}
+			globals.scrollDir=1
 		}
 	}
 
