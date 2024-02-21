@@ -85,7 +85,7 @@ PS.init = function( system, options ) {
 	PS.glyph(0,14,0x1F420)
 	PS.glyph(0,0,0x1FA9D)
 
-	PS.timerStart(1, update);
+	globals.gameLoop = PS.timerStart(1, update);
 };
 
 var update = function() {
@@ -97,6 +97,8 @@ var update = function() {
 		if (globals.fishX==15) globals.fishDx=-1
 		if (globals.fishX==0) globals.fishDx=1
 	}
+	if (globals.scrollDel>0) {
+		if (globals.hookY==0) {
 }
 
 var globals = {
