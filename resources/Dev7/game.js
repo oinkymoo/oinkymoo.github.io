@@ -91,7 +91,7 @@ PS.init = function( system, options ) {
 var update = function() {
 	if (globals.fishTimer--==0) {
 		globals.fishTimer = 3
-		PS.glyph(globals.fishX, globals.fishY, 0)
+		PS.glyph(globals.fishX, globals.fishY, (globals.fishX==globals.hookX && globals.fishY==globals.hookY) ? 0x1FA9D : 0)
 		globals.fishX+=globals.fishDx
 		PS.glyph(globals.fishX, globals.fishY, 0x1F420)
 		if (globals.fishX==15) globals.fishDx=-1
