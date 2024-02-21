@@ -106,6 +106,9 @@ var globals = {
 	fishTimer: 3,
 	hookX: 0,
 	hookY: 0,
+	scrollDir: 1,
+	scrollDel: 0,
+	scrollTime: 0
 }
 
 /*
@@ -242,13 +245,20 @@ This function doesn't have to do anything. Any value returned is ignored.
 NOTE: Currently, only mouse wheel events are reported, and only when the mouse cursor is positioned directly over the grid.
 */
 
-PS.input = function( sensors, options ) {
+PS.input = function( device, options ) {
 	// Uncomment the following code lines to inspect first parameter:
 
-	var device = sensors.wheel; // check for scroll wheel
+	var wheel = device.wheel; // check for scroll wheel
 
-	switch (device) {
-
+	if (wheel) {
+		if (wheel === PS.WHEEL_FORWARD) {
+			globals.scrollDel+=3
+			globals.scrollDir=1
+		}
+		if (wheel === PS.WHEEL_BACKWARD) {
+			globals.scrollDel+=3
+			globals.scrollDir=-1
+		}
 	}
 
 	// Add code here for when an input event is detected.
