@@ -99,20 +99,18 @@ var update = function() {
 	}
 	if (globals.scrollDel>0) {
 		globals.scrollTime++
-		if (globals.hookY==0) {
-			if (globals.scrollDel==3) {
+		if (globals.scrollDel==3) {
+			if (globals.hookY == 0) {
 				PS.glyph(globals.hookX, 0, 0)
-				globals.hookX = Math.min((globals.scrollTime+3)/2, 15)
+				globals.hookX = Math.min(Math.floor((globals.scrollTime + 3) / 2), 15)
 				PS.glyph(globals.hookX, 0, 0x1FA9D)
-			}
-			globals.scrollDel--
-		} else {
-			if (globals.scrollDel==3) {
-				PS.glyph(globals.hookX, globals.hookY, (globals.scrollDir==1 && globals.hookX==globals.fishX && globals.hookY==globals.fishY) ? 0x1F420 : 0)
-				globals.hookY = Math.min(Math.max(globals.origHookY + (globals.scrollTime*globals.scrollDir)/2, 1), 14)
-				PS.glyph(globals.hookX, globals.hookY, (globals.hookX==globals.fishX && globals.hookY==globals.fishY) ? 0x1F420 : 0x1FA9D)
+			} else {
+				PS.glyph(globals.hookX, globals.hookY, (globals.scrollDir == 1 && globals.hookX == globals.fishX && globals.hookY == globals.fishY) ? 0x1F420 : 0)
+				globals.hookY = Math.min(Math.max(globals.origHookY + Math.floor(((globals.scrollTime+1) * globals.scrollDir) / 2), 1), 14)
+				PS.glyph(globals.hookX, globals.hookY, (globals.hookX == globals.fishX && globals.hookY == globals.fishY) ? 0x1F420 : 0x1FA9D)
 			}
 		}
+		globals.scrollDel--
 	} else {
 		if (globals.hookY==0 && globals.scrollTime) {
 			PS.glyph(globals.hookX, 0, 0)
@@ -297,7 +295,7 @@ PS.input = function( device, options ) {
 				globals.origHookY=globals.hookY
 				globals.scrollTime=0
 			}
-			globals.scrollDir=-1
+			globals.scrollDir=1
 		}
 		if (wheel === PS.WHEEL_BACKWARD) {
 			globals.scrollDel=3
@@ -305,7 +303,7 @@ PS.input = function( device, options ) {
 				globals.origHookY=globals.hookY
 				globals.scrollTime=0
 			}
-			globals.scrollDir=1
+			globals.scrollDir=-1
 		}
 	}
 
