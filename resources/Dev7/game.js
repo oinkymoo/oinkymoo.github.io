@@ -102,7 +102,7 @@ var update = function() {
 			globals.scrollTime++
 			if (globals.scrollDel==3) {
 				PS.glyph(globals.hookX, 0, 0)
-				globals.hookX = (globals.scrollTime+3)/2
+				globals.hookX = Math.min((globals.scrollTime+3)/2, 15)
 				PS.glyph(globals.hookX, 0, 0x1FA9D)
 			}
 			globals.scrollDel--
