@@ -75,6 +75,7 @@ PS.init = function( system, options ) {
 	PS.statusText( "scroll to cast line" );
 
 	// Add any other initialization code you need here.
+	PS.border(PS.ALL,PS.ALL, 0)
 	PS.color(PS.ALL, PS.ALL, 0xaaaaff)
 	PS.color(PS.ALL, 15, 0xffffaa)
 	PS.color(PS.ALL, 0, PS.COLOR_WHITE)
