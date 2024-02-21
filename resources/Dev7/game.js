@@ -80,7 +80,7 @@ PS.init = function( system, options ) {
 	PS.color(PS.ALL, 0, PS.COLOR_WHITE)
 	PS.color(PS.ALL, 1, PS.COLOR_WHITE)
 	PS.color(0,1,0x804000)
-	PS.color(1,1,0x804000)
+	//PS.color(1,1,0x804000)
 
 	PS.glyph(0,14,0x1F420)
 	PS.glyph(0,0,0x1FA9D)
