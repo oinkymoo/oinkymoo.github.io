@@ -99,6 +99,25 @@ var update = function() {
 	}
 	if (globals.scrollDel>0) {
 		if (globals.hookY==0) {
+			globals.scrollTime++
+			if (globals.scrollDel==3) {
+				PS.glyph(globals.hookX, 0, 0)
+				globals.hookX = (globals.scrollTime+3)/2
+				PS.glyph(globals.hookX, 0, 0x1FA9D)
+			}
+			globals.scrollDel--
+		} else {
+
+		}
+	} else {
+		if (globals.hookY==0 && globals.scrollTime) {
+			PS.glyph(globals.hookX, 0, 0)
+			globals.hookY = 2
+			PS.glyph(globals.hookX, 2, (globals.fishX==globals.hookX && globals.fishY==2) ? 0x1F420 : 0x1FA9D)
+			globals.scrollTime = 0
+		}
+
+	}
 }
 
 var globals = {
@@ -110,7 +129,8 @@ var globals = {
 	hookY: 0,
 	scrollDir: 1,
 	scrollDel: 0,
-	scrollTime: 0
+	scrollTime: 0,
+	gameLoop: null
 }
 
 /*
@@ -254,11 +274,11 @@ PS.input = function( device, options ) {
 
 	if (wheel) {
 		if (wheel === PS.WHEEL_FORWARD) {
-			globals.scrollDel+=3
+			globals.scrollDel=3
 			globals.scrollDir=1
 		}
 		if (wheel === PS.WHEEL_BACKWARD) {
-			globals.scrollDel+=3
+			globals.scrollDel=3
 			globals.scrollDir=-1
 		}
 	}
