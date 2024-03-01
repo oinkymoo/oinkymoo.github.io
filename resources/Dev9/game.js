@@ -86,7 +86,7 @@ PS.init = function( system, options ) {
 	PS.glyph(0,14,0x1F420)
 	PS.glyph(0,0,0x1FA9D)
 
-	PS.audioLoad("fx_bloop")
+	PS.audioLoad("fx_coin2")
 
 	globals.gameLoop = PS.timerStart(1, update);
 };
@@ -100,7 +100,7 @@ var update = function() {
 		PS.glyph(globals.fishX, globals.fishY, 0x1F420)
 		if (globals.fishX==15) globals.fishDx=-1
 		if (globals.fishX==0) globals.fishDx=1
-		if (globals.fishY==globals.hookY && globals.fishX+globals.fishDx==globals.hookX) PS.audioPlay("fx_bloop")
+		if (globals.fishY==globals.hookY && globals.fishX+globals.fishDx==globals.hookX) PS.audioPlay("fx_coin2")
 	}
 	if (globals.scrollDel>0) {
 		globals.scrollTime++
