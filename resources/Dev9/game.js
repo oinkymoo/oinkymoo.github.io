@@ -116,6 +116,7 @@ var update = function() {
 				}
 				globals.hookY = Math.min(Math.max(globals.origHookY + Math.floor(((globals.scrollTime+1) * globals.scrollDir) / 2), 1), 14)
 				PS.glyph(globals.hookX, globals.hookY, (globals.hookX == globals.fishX && globals.hookY == globals.fishY) ? 0x1F420 : 0x1FA9D)
+				PS.glyph(globals.hookX, globals.hookY-1, (globals.hookX==globals.fishX && globals.hookY==globals.fishY+1) ? 0x1F420 : 0x1FA9D)
 			}
 		}
 		globals.scrollDel--
@@ -128,6 +129,7 @@ var update = function() {
 			PS.statusText("scroll down/up to lower/raise hook")
 		} else if (globals.hookY==1) {
 			PS.glyph(globals.hookX, 1, 0)
+			PS.glyph(globals.hookX,0,0)
 			PS.glyph(0,0,0x1FA9D)
 			globals.hookX=0
 			globals.hookY=0
