@@ -121,7 +121,8 @@ var update = function() {
 		globals.scrollDel--
 	} else {
 		if (globals.hookY==0 && globals.scrollTime) {
-			PS.glyph(globals.hookX, 0, 0)
+			PS.glyph(globals.hookX, 0, '|')
+			PS.glyph(globals.hookX, 1, '|')
 			globals.hookY = 2
 			PS.glyph(globals.hookX, 2, (globals.fishX==globals.hookX && globals.fishY==2) ? 0x1F420 : 0x1FA9D)
 			PS.statusText("scroll down/up to lower/raise hook")
