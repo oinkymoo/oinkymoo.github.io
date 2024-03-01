@@ -115,8 +115,11 @@ var update = function() {
 					if (globals.fishY==1) globals.fishTimer=300
 				}
 				globals.hookY = Math.min(Math.max(globals.origHookY + Math.floor(((globals.scrollTime+1) * globals.scrollDir) / 2), 1), 14)
-				PS.glyph(globals.hookX, globals.hookY, (globals.hookX == globals.fishX && globals.hookY == globals.fishY) ? 0x1F420 : 0x1FA9D)
-				PS.glyph(globals.hookX, globals.hookY-1, (globals.hookX==globals.fishX && globals.hookY==globals.fishY+1) ? 0x1F420 : 0x1FA9D)
+				for (var i=0; i<=14; i++) {
+					if (PS.glyph(globals.hookX, i) != 0x1F420) {
+						PS.glyph(globals.hookX, i, i<globals.hookY ? '|' : (i>globals.hookY ? 0 : 0x1FA9D))
+					}
+				}
 			}
 		}
 		globals.scrollDel--
