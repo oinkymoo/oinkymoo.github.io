@@ -92,7 +92,7 @@ PS.init = function( system, options ) {
 var update = function() {
 	if (--globals.fishTimer==0) {
 		globals.fishTimer = 5
-		PS.glyph(globals.fishX, globals.fishY, (globals.fishX==globals.hookX && globals.fishY==globals.hookY) ? 0x1FA9D : 0)
+		PS.glyph(globals.fishX, globals.fishY, globals.fishX==globals.hookX ? (globals.fishY>globals.hookY ? 0 : (globals.fishY<globals.hookY ? '|' : 0x1FA9D)) : 0)
 		globals.fishX+=globals.fishDx
 		globals.fishY=Math.max(globals.fishY,2)
 		PS.glyph(globals.fishX, globals.fishY, 0x1F420)
