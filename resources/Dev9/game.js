@@ -164,7 +164,8 @@ var globals = {
 	scrollDir: 1,
 	scrollDel: 0,
 	scrollTime: 0,
-	gameLoop: null
+	gameLoop: null,
+	level: 0
 }
 
 /*
